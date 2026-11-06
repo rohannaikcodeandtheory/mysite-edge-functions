@@ -1,0 +1,13 @@
+# TEMPLATE ONLY; merge with existing Cloud Manager CDN configuration.
+kind: CDN
+version: '1'
+data:
+  originSelectors:
+    rules:
+      - name: route-driv-parts-finder
+        when:
+          reqProperty: path
+          matches: '^/api/catalog/(years|makes|models|parts|health)$'
+        action:
+          type: selectAemOrigin
+          originName: edgefunction-driv-parts-finder

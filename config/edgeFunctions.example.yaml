@@ -1,0 +1,20 @@
+# TEMPLATE ONLY. Verify current Adobe Edge Functions config schema before deployment.
+# Keep your boilerplate's existing config and merge approved origins/configs/secrets.
+kind: EdgeFunctions
+version: '1'
+data:
+  functions:
+    - name: driv-parts-finder
+      origins:
+        - name: pdm_api
+          domain: pdm.example.test
+  configs:
+    - key: PDM_BASE_URL
+      value: https://pdm.example.test
+    - key: PDM_REGION_ID
+      value: 'REPLACE_WITH_REAL_REGION_ID'
+    - key: PDM_DYNAMIC_SUB_CONFIG_TYPES
+      value: 'REPLACE_WITH_NACatalogConstants_VALUE'
+  secrets:
+    - key: PDM_API_TOKEN
+      value: ${{PDM_API_TOKEN_SECRET}}

@@ -1,11 +1,19 @@
+# Verify against the schema supported by your Cloud Manager environment.
 kind: "EdgeFunctions"
 version: "1"
 data:
   functions:
     - name: my-edge-function
-  # Uncomment to enable secrets
-  # secrets:
-  #   - key: API_TOKEN
-  #     value: ${{ API_TOKEN_SECRET }}
-  # Uncomment to enable a KV store
-  # kvs: true
+      origins:
+        - name: pdm_api
+          domain: api.pdm-automotive.com
+  configs:
+    - key: PDM_BASE_URL
+      value: "https://api.pdm-automotive.com/api/v1"
+    - key: PDM_REGION_ID
+      value: "1,2"
+    - key: PDM_DYNAMIC_SUB_CONFIG_TYPES
+      value: ""
+  secrets:
+    - key: PDM_API_TOKEN
+      value: ${{DRIV_PDM_API_TOKEN}}

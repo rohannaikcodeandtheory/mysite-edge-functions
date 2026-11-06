@@ -1,48 +1,64 @@
-/*
-Copyright 2025 Adobe. All rights reserved.
-This file is licensed to you under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License. You may obtain a copy
-of the License at http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software distributed under
-the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
-OF ANY KIND, either express or implied. See the License for the specific language
-governing permissions and limitations under the License.
-*/
+import { ConfigStore } from 'fastly:config-store';
+import { CacheOverride } from 'fastly:cache-override';
 
-/// <reference types="@fastly/js-compute" />
+import { handleCatalog } from './handler.js';
+import { SecretStoreManager } from './lib/config.js';
 
-import * as response from './lib/response.js';
-import { log } from './lib/log.js';
-import { weatherHandler } from "./weather.js";
+addEventListener('fetch', (event) => {
+  event.respondWith((async () => {
+    const request = event.request;
+    const url = new URL(request.url);
 
-addEventListener("fetch", (event) => event.respondWith(handleRequest(event)));
-
-async function handleRequest(event) {
-  const req = event.request;
-  const url = new URL(req.url);
-
-  let finalResponse;
-
-  try {
-    // Route matching
-    if (url.pathname === "/" && req.method === "GET") {
-      finalResponse = new Response("Hello World from the edge!", { status: 200 });
-    } else if (url.pathname === "/hello-world" && req.method === "GET") {
-      finalResponse = new Response("Hello World from the edge!", { status: 200 });
-    } else if (url.pathname === "/weather" && req.method === "GET") {
-      finalResponse = await weatherHandler(req, event.client);
-    } else {
-      finalResponse = response.notFound();
+    if (url.pathname === '/api/catalog/health') {
+      return Response.json({
+        status: 'ok',
+        service: 'driv-parts-finder',
+      });
     }
-  } catch (err) {
-    console.log(err);
-    finalResponse = response.error();
-  }
 
-  // Log the request and response
-  log(req, finalResponse);
+    try {
+      const config = new ConfigStore('config_default');
 
-  return finalResponse;
-}
 
+      const baseUrl = config.get('PDM_BASE_URL');
+      const regionId = config.get('PDM_REGION_ID');
+      const dynamicTypes = config.get('PDM_DYNAMIC_SUB_CONFIG_TYPES');
+      const token = await SecretStoreManager.getSecret('PDM_API_TOKEN').catch(() => null);
+
+      console.log('PDM configuration status:', {
+        hasBaseUrl: Boolean(baseUrl),
+        hasRegionId: Boolean(regionId),
+        hasDynamicTypes: Boolean(dynamicTypes),
+        hasToken: Boolean(token),
+        backendName: 'pdm_api',
+      });
+
+      return await handleCatalog(request, {
+        baseUrl,
+        regionId,
+        dynamicTypes,
+        token,
+
+        fetchUpstream: (upstreamUrl, options) => fetch(
+          upstreamUrl,
+          {
+            ...options,
+            backend: 'pdm_api',
+            cacheOverride: new CacheOverride('pass'),
+          },
+        ),
+      });
+    } catch (error) {
+      console.error('Edge Functions setup failure:', error.message);
+
+      return Response.json(
+        { error: 'Catalog configuration unavailable' },
+        {
+          status: 502,
+          headers: { 'Cache-Control': 'no-store' },
+        },
+      );
+    }
+  })());
+});

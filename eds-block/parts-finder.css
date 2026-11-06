@@ -1,0 +1,4 @@
+.parts-finder{display:grid;gap:1rem;max-width:760px;padding:1.5rem;border:1px solid #ddd}
+.parts-finder label{display:grid;gap:.4rem}
+.parts-finder select,.parts-finder button{min-height:44px;padding:.6rem}
+.parts-finder pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:300px;overflow:auto}
