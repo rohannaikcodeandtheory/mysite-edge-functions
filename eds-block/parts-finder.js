@@ -40,20 +40,26 @@ export default function decorate(block) {
   const locale = dropdown('Locale'); ['en_US','de_DE','en_GB','fr_FR','es_MX'].forEach((v)=>locale.select.append(new Option(v,v)));
   const group = dropdown('Vehicle group'); group.select.append(new Option('Select vehicle group',''), new Option('Groups 2,8','2,8'), new Option('Group 7','7'));
   const year = dropdown('Year'); const make = dropdown('Make'); const model = dropdown('Model');
-  const run = create('button','Find Parts'); const health = create('button','Test API health');
-  const postmanMode = create('input'); postmanMode.type='checkbox'; postmanMode.checked=true; postmanMode.setAttribute('aria-label','Use Postman-compatible vehicle request');
-  const postmanLabel = create('label','Use Postman-compatible vehicle request (recommended for debugging 400 errors)'); postmanLabel.className='parts-finder-toggle'; postmanLabel.prepend(postmanMode);
+  const run = create('button','Find matching parts'); const health = create('button','Check API connection');
   const copyUrl=create('button','Copy last request URL'); copyUrl.type='button'; copyUrl.disabled=true; let lastUrl=''; copyUrl.addEventListener('click',()=>{if(lastUrl)navigator.clipboard?.writeText(lastUrl).then(()=>{status.textContent='Request URL copied';}).catch(()=>{status.textContent='Clipboard unavailable; copy URL from JSON below';});});
   const route = dropdown('Direct API test');
   ['years','makes','models','parts','parts-light','search','engine-mfrs','engine-bases','engine-usages','engine-versions-ld','engine-parts-ld'].forEach((v)=>route.select.append(new Option(v,v)));
   const extra = create('input'); extra.placeholder = 'Additional query: part_number=...'; extra.setAttribute('aria-label','Additional query parameters');
   const test = create('button','Test selected API'); const status = create('p'); status.setAttribute('aria-live','polite');
   const output = create('pre'); output.className = 'parts-finder-response';
-  const header=create('div'); header.className='parts-finder-header'; const heading=create('h2','Find the right part'); const subtitle=create('p','Choose a website and brand, then search vehicles or inspect the PDM API response.');header.append(heading,subtitle);
-  const settings=create('section');settings.className='parts-finder-panel';settings.append(create('h3','1. Website & API settings'),site.label,link,mode.label,endpoint,brand.label,codes.label,customCodes,country.label,locale.label,postmanLabel,warning);
-  const vehicle=create('section');vehicle.className='parts-finder-panel';vehicle.append(create('h3','2. Vehicle selection'),group.label,year.label,make.label,model.label,run);
-  const diagnostics=create('section');diagnostics.className='parts-finder-panel';diagnostics.append(create('h3','3. API diagnostics'),health,route.label,extra,test,copyUrl,status,output);
-  block.append(header,settings,vehicle,diagnostics);
+  const header=create('div'); header.className='parts-finder-header';
+  const eyebrow=create('span','DRiV  /  MOOG  ·  PRODUCT DISCOVERY'); eyebrow.className='parts-finder-eyebrow';
+  const heading=create('h2','Find the perfect fit.');
+  const subtitle=create('p','A faster way to find the right automotive parts. Select your market, choose your vehicle and explore matching products.');
+  const steps=create('div'); steps.className='parts-finder-steps';
+  ['01  Choose market','02  Select vehicle','03  Find parts'].forEach(t=>{const x=create('span',t);steps.append(x);});
+  header.append(eyebrow,heading,subtitle,steps);
+  const settings=create('section');settings.className='parts-finder-panel';settings.append(create('h3','01  Market & brand'),site.label,link,mode.label,endpoint,brand.label,codes.label,customCodes,country.label,locale.label,warning);
+  const vehicle=create('section');vehicle.className='parts-finder-panel';vehicle.append(create('h3','02  Your vehicle'),group.label,year.label,make.label,model.label,run);
+  const diagnostics=create('section');diagnostics.className='parts-finder-panel';diagnostics.append(create('h3','03  Live API console'),health,route.label,extra,test,copyUrl,status,output);
+  const summary=create('div'); summary.className='parts-finder-summary';
+  summary.append(create('strong','Built for confident parts selection'),create('span','Live vehicle data · Brand-aware search · Transparent API diagnostics'));
+  block.append(header,summary,settings,vehicle,diagnostics);
   const fields = [year,make,model];
   const reset = (index=0) => { fields.slice(index).forEach(({select,name})=>{select.replaceChildren(new Option(`Select ${name}`,''));select.disabled=true;});run.disabled=true; };
   let generation = 0; reset();
@@ -63,14 +69,12 @@ export default function decorate(block) {
   };
   const applyProfile = () => { const p=profiles[site.select.value]; brand.select.value=p.brand; country.select.value=p.country; locale.select.value=p.locale; ++generation; reset(); updateWarning(); };
   site.select.addEventListener('change',applyProfile);
-  postmanMode.addEventListener('change',()=>{++generation;reset();});
   codes.select.addEventListener('change',()=>{customCodes.hidden=codes.select.value!=='custom';++generation;reset();updateWarning();});
   [brand.select,country.select,locale.select,customCodes].forEach(el=>el.addEventListener('change',()=>{++generation;reset();}));
-  codes.select.value='BDCM';applyProfile();
+  codes.select.value='BDCM';group.select.value='2,8';applyProfile();
   const base = () => new URL(endpoint.value.trim() || (mode.select.value==='local'?'http://127.0.0.1:7676':window.location.origin));
   const shared = () => {
     const p={brand:brand.select.value,country_code:country.select.value,locale:locale.select.value,vehicle_group_ids:group.select.value};
-    if(postmanMode.checked) p.postman_mode='1';
     const selected=codes.select.value==='custom'?customCodes.value.trim():codes.select.value;
     if(selected) { if(!/^[A-Za-z0-9_,.-]{1,500}$/.test(selected)) throw new Error('Invalid PDM brand codes'); p.brand_codes=selected; }
     return p;
@@ -94,11 +98,14 @@ export default function decorate(block) {
     }catch(error){if(current===generation){status.textContent=`Request failed: ${error.message}`;output.textContent='Check the Edge Function, CORS, brand mapping and locale/region configuration.';}}
   }
   const request = (name, additional={}) => { try {load(name,{...shared(),...additional});}catch(error){status.textContent=error.message;} };
+  mode.select.addEventListener('change',()=>{endpoint.value='';});
   group.select.addEventListener('change',()=>{++generation;reset();if(group.select.value)try{load('years',shared(),year);}catch(e){status.textContent=e.message;}});
   year.select.addEventListener('change',()=>{++generation;reset(1);if(year.select.value)try{load('makes',{...shared(),year_id:year.select.value},make);}catch(e){status.textContent=e.message;}});
   make.select.addEventListener('change',()=>{++generation;reset(2);if(make.select.value)try{load('models',{...shared(),year_id:year.select.value,make_id:make.select.value},model);}catch(e){status.textContent=e.message;}});
   model.select.addEventListener('change',()=>{run.disabled=!model.select.value;});
   run.addEventListener('click',()=>request('parts',{year_id:year.select.value,make_id:make.select.value,model_id:model.select.value,page:'1',limit:'50'}));
   health.addEventListener('click',()=>load('health'));
+  const loadYears=create('button','Load available years'); loadYears.className='parts-finder-secondary';vehicle.insertBefore(loadYears,year.label);
+  loadYears.addEventListener('click',()=>{++generation;reset();if(!group.select.value){status.textContent='Select a vehicle group first';return;}try{load('years',shared(),year);}catch(e){status.textContent=e.message;}});
   test.addEventListener('click',()=>{const additional=new URLSearchParams(extra.value);const params={year_id:year.select.value,make_id:make.select.value,model_id:model.select.value};additional.forEach((v,k)=>{params[k]=v;});request(route.select.value,params);});
 }
