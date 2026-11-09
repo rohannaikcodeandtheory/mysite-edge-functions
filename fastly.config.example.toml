@@ -1,0 +1,12 @@
+# Merge these settings into YOUR EXISTING fastly.toml. Do not replace its PDM_API_TOKEN entry.
+[local_server.backends.pdm_api]
+url = "https://driv-search-api-os-cache.pdm-automotive.com"
+
+[local_server.config_stores.config_default.contents]
+LOG_LEVEL = "debug"
+PDM_BASE_URL = "https://driv-search-api-os-cache.pdm-automotive.com/v1"
+PDM_REGION_ID = "1,2"
+PDM_BRAND_CODES_CORPORATE = "" # Populate with verified AEM brand-code mapping
+PDM_CUSTOM_FIELDS = "" # Optional AEM custom-fields JSON; can be URL-encoded
+PDM_LOCALE = "" # Optional verified PDM locale override
+PDM_DYNAMIC_SUB_CONFIG_TYPES = "drive,engine_base,sub_model,body_type,body_door,engine_designation,engine_vin,transmission_base_type,transmission_base_control_type,transmission_base_gear,transmission_mfr_code,wheel_base,brake_abs,steering_system,transmission_mfr,engine_fuel_delivery_sub_type,engine_version,engine_fuel_type,engine_aspiration,engine_cylinder_head_type,engine_fuel_delivery_type,engine_valve,bed_length"

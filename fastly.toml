@@ -8,6 +8,7 @@ name = "aem-edge-functions-boilerplate"
 service_id = ""
 
 [scripts]
+build = "npm run build"
 post_init = "npm install"
 
 [local_server]
@@ -17,7 +18,7 @@ post_init = "npm install"
 url = "https://api.open-meteo.com"
 
 [local_server.backends.pdm_api]
-url = "https://api.pdm-automotive.com"
+url = "https://driv-search-api-os-cache.pdm-automotive.com"
 
 [local_server.config_stores]
 
@@ -26,11 +27,13 @@ format = "inline-toml"
 
 [local_server.config_stores.config_default.contents]
 LOG_LEVEL = "debug"
-PDM_BASE_URL = "https://api.pdm-automotive.com/api/v1"
+PDM_BASE_URL = "https://driv-search-api-os-cache.pdm-automotive.com/v1"
 PDM_REGION_ID = "1,2"
-PDM_DYNAMIC_SUB_CONFIG_TYPES = ""
+PDM_BRAND_CODES_CORPORATE = "BDCM" # Postman sample only; NOT confirmed corporate mapping
+PDM_CUSTOM_FIELDS = ""
+PDM_DYNAMIC_SUB_CONFIG_TYPES = "drive,engine_base,sub_model,body_type,body_door,engine_designation,engine_vin,transmission_base_type,transmission_base_control_type,transmission_base_gear,transmission_mfr_code,wheel_base,brake_abs,steering_system,transmission_mfr,engine_fuel_delivery_sub_type,engine_version,engine_fuel_type,engine_aspiration,engine_cylinder_head_type,engine_fuel_delivery_type,engine_valve,bed_length"
 
 [local_server.secret_stores]
 [[local_server.secret_stores.secret_default]]
 key = "PDM_API_TOKEN"
-data = "LOCAL_PLACEHOLDER_NOT_A_REAL_TOKEN"
+data = "98dce83da57b0395e163467c9dae521b1415fe9fea0fa1e45dddcff5682239a0"

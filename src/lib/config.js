@@ -61,7 +61,7 @@ export class SecretStoreManager {
       }
       return secret.plaintext();
     } catch (error) {
-      console.error(`Failed to load secret '${key}':`, error);
+      console.error(`Failed to load secret '${key}' (details suppressed)`);
       throw error;
     }
   }

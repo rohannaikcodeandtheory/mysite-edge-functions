@@ -27,13 +27,7 @@ data:
           originName: edgefunction-my-edge-function
 
       - name: route-driv-catalog-to-edge-function
-        when: { reqProperty: path, matches: '^/api/catalog/(health|years|makes|models|parts)$' }
-        action:
-          type: selectAemOrigin
-          originName: edgefunction-my-edge-function
-
-      - name: route-driv-catalog-to-edge-function
-        when: { reqProperty: path, matches: '^/api/catalog/(health|years|makes|models|parts)$' }
+        when: { reqProperty: path, matches: '^/api/catalog/(health|years|makes|models|parts|parts-light|search|engine-mfrs|engine-bases|engine-usages|engine-versions-ld|engine-parts-ld)$' }
         action:
           type: selectAemOrigin
           originName: edgefunction-my-edge-function

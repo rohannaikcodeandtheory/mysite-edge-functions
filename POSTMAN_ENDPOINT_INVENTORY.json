@@ -1,0 +1,589 @@
+[
+  {
+    "name": "vehicles/years",
+    "path": "/v1/vehicles/years",
+    "query": {
+      "brand_codes": "BDCM"
+    }
+  },
+  {
+    "name": "vehicles/makes",
+    "path": "/v1/vehicles/makes",
+    "query": {
+      "year_id": "2015",
+      "brand_codes": "BDCM"
+    }
+  },
+  {
+    "name": "vehicles/models",
+    "path": "/v1/vehicles/models",
+    "query": {
+      "brand_codes": "BDCM",
+      "year_id": "2015",
+      "make_id": "16"
+    }
+  },
+  {
+    "name": "vehicles/concatenated_equipment_models",
+    "path": "/v1/vehicles/concatenated_equipment_models",
+    "query": {
+      "brand_codes": "BBKH"
+    }
+  },
+  {
+    "name": "vehicles/vehicle_types",
+    "path": "/v1/vehicles/vehicle_types",
+    "query": {
+      "brand_codes": "BDCN,BCKM",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "vehicle_group_id": "4"
+    }
+  },
+  {
+    "name": "vehicles/mfrs",
+    "path": "/v1/vehicles/mfrs",
+    "query": {
+      "brand_codes": "BDCN,BCKM",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "vehicle_type_id": "2"
+    }
+  },
+  {
+    "name": "vehicles/equipment_models",
+    "path": "/v1/vehicles/equipment_models",
+    "query": {
+      "brand_codes": "BDCN,BCKM",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "locale": "en_US",
+      "vehicle_type_id": "4",
+      "mfr_id": "58"
+    }
+  },
+  {
+    "name": "vehicles/production_years",
+    "path": "/v1/vehicles/production_years",
+    "query": {
+      "brand_codes": "BDCN,BCKM",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "locale": "en_US",
+      "vehicle_type_id": "3",
+      "mfr_id": "49",
+      "equipment_model_id": "488"
+    }
+  },
+  {
+    "name": "vehicles/bases (Not Required)",
+    "path": "",
+    "query": {
+      "brand_codes": "BDXN",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "locale": "en_US",
+      "year_id": "1989",
+      "makel_id": "49",
+      "model_id": "688"
+    }
+  },
+  {
+    "name": "vehicles/sub_configs (optional)",
+    "path": "",
+    "query": {
+      "brand_codes": "BDXN",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "locale": "en_US",
+      "year_id": "1989",
+      "makel_id": "49",
+      "model_id": "688"
+    }
+  },
+  {
+    "name": "categories (optional)",
+    "path": "",
+    "query": {
+      "brand_codes": "BDXN",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "locale": "en_US",
+      "year_id": "1989",
+      "makel_id": "49",
+      "model_id": "688"
+    }
+  },
+  {
+    "name": "products/listings",
+    "path": "/v1/products/listings",
+    "query": {
+      "brand_codes": "BDCN,BCKM",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "locale": "en_US",
+      "config_response_fields": "make,model,year,sub_model,position,region,engine_fuel_type,engine_designation,engine_vin,engine_valve,engine_aspiration,engine_cylinder_head_type,engine_ignition_system_type,engine_mfr,engine_version,engine_power_output,engine_base,engine_base_block_type,engine_base_bore_inch,engine_base_bore_metric,engine_base_cubic_centimeter,engine_base_cubic_inch,engine_base_cylinder,engine_base_liter,engine_base_stroke_inch,engine_base_stroke_metric,engine_fuel_delivery_type,engine_fuel_delivery_sub_type,engine_fuel_delivery_system_control_type,engine_fuel_delivery_system_design,transmission_base_type,transmission_base_gear,transmission_base_control_type,transmission_mfr_code,transmission_mfr,transmission_electronically_controlled_information,body_door,body_type,front_spring_type,rear_spring_type,bed_length,bed_type,front_brake_type,rear_brake_type,brake_system,brake_abs,steering_type,steering_system,drive,wheel_base,mfr_body_code,note,qualifier,category\n",
+      "year_id": "1995",
+      "make_id": "54",
+      "model_id": "667",
+      "sub_model_id": "1",
+      "vehicle_group_id": "3",
+      "vehicle_type_id": "2",
+      "mfr_id": "2",
+      "equipment_model_id": "662",
+      "engine_fuel_type_id": "1",
+      "engine_designation_id": "1",
+      "engine_vin_id": "1",
+      "engine_valve_id": "5",
+      "engine_aspiration_id": "2",
+      "engine_cylinder_head_type_id": "32",
+      "engine_ignition_system_type_id": "76",
+      "engine_mfr_id": "82",
+      "engine_version_id": "438",
+      "engine_power_output_id": "63",
+      "engine_fuel_delivery_type_id": "6",
+      "engine_fuel_delivery_sub_type_id": "9",
+      "engine_fuel_delivery_system_control_type_id": "4",
+      "engine_fuel_delivery_system_design_id": "5",
+      "transmission_mfr_code_id": "6",
+      "transmission_mfr_id": "7",
+      "transmission_electronically_controlled_information_id": "8",
+      "transmission_base_type_id": "3",
+      "transmission_base_gear_id": "1",
+      "transmission_base_control_type_id": "6",
+      "body_door_id": "8",
+      "body_type_id": "34",
+      "front_spring_type_id": "6",
+      "rear_spring_type_id": "2",
+      "bed_length_id": "3",
+      "bed_type_id": "45",
+      "front_brake_type_id": "3",
+      "rear_brake_type_id": "2",
+      "brake_system_id": "5",
+      "brake_abs_id": "3",
+      "steering_type_id": "6",
+      "steering_system_id": "8",
+      "drive_id": "2",
+      "mfr_body_code_id": "4",
+      "wheel_base_id": "5",
+      "position_id": "643"
+    }
+  },
+  {
+    "name": "products/details",
+    "path": "/v1/products/details",
+    "query": {
+      "segments": "part_attributes,descriptions,extended_informations,marketing_copies",
+      "brand_code": "BDCM",
+      "part_number": "534G"
+    }
+  },
+  {
+    "name": "products/search",
+    "path": "/v1/products/search",
+    "query": {
+      "locale": "es_MX",
+      "brand_codes": "BDCM",
+      "part_number": "1003"
+    }
+  },
+  {
+    "name": "products/applications",
+    "path": "/v1/products/applications",
+    "query": {
+      "brand_code": "BCWV",
+      "locale": "en_US",
+      "part_number": "1160 L"
+    }
+  },
+  {
+    "name": "vehicles/engine_bases",
+    "path": "/driv1/vehicles/engine_bases",
+    "query": {
+      "brand_codes": "BBKH",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "vehicle_group_id": "2213",
+      "engine_mfr_id": "2422",
+      "locale": "en_US"
+    }
+  },
+  {
+    "name": "vehicles/engine_usages",
+    "path": "/driv1/vehicles/engine_usages",
+    "query": {
+      "brand_codes": "BBKH",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "vehicle_group_id": "2213",
+      "engine_mfr_id": "1272",
+      "<engine_base_ids>": "3242"
+    }
+  },
+  {
+    "name": "vehicles/engine_versions/light_duty",
+    "path": "/driv1/vehicles/engine_versions/light_duty",
+    "query": {
+      "brand_codes": "BBKH",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "vehicle_group_id": "2213",
+      "engine_mfr_id": "2422",
+      "locale": "en_US",
+      "<engine_base_ids>": "3242",
+      "<engine_usage_ids>": "4567"
+    }
+  },
+  {
+    "name": "vehicles/engine_versions/heavy_duty",
+    "path": "/driv1/vehicles/engine_versions/heavy_duty",
+    "query": {
+      "brand_codes": "BBKH",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "vehicle_group_id": "2213",
+      "engine_mfr_id": "2422",
+      "locale": "en_US",
+      "<engine_base_ids>": "3242",
+      "<engine_usage_ids>": "4567"
+    }
+  },
+  {
+    "name": "vehicles/engine_versions/performance",
+    "path": "/driv1/vehicles/engine_versions/performance",
+    "query": {
+      "brand_codes": "BBKH",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "vehicle_type_id": "2213",
+      "engine_mfr_id": "2422",
+      "locale": "en_US"
+    }
+  },
+  {
+    "name": "vehicles/engine_mfrs",
+    "path": "/v1/vehicles/engine_mfrs",
+    "query": {
+      "brand_codes": "BDCN",
+      "vehicle_group_ids": "2,7,8"
+    }
+  },
+  {
+    "name": "vehicles/transmission_mfrs",
+    "path": "/v1/vehicles/transmission_mfrs",
+    "query": {
+      "brand_codes": "BDCN",
+      "vehicle_group_ids": "2,7,8"
+    }
+  },
+  {
+    "name": "products/listings",
+    "path": "/driv1/products/listings",
+    "query": {
+      "brand_codes": "BDCN,BCKM",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "locale": "en_US",
+      "sub_brand_codes": "BDCN,BCKM",
+      "position_id": "643",
+      "category_id": "2346",
+      "sub_category_id": "2437",
+      "part_type_id": "4532",
+      "page": "1",
+      "limit": "50"
+    }
+  },
+  {
+    "name": "products/engine_listings/light_duty",
+    "path": "/driv1/products/engine_listings/light_duty",
+    "query": {
+      "brand_codes": "BDCN,BCKM",
+      "locale": "en_US",
+      "filter_qualifier_ids": "23,53,63",
+      "sub_brand_codes": "BDCN,BCKM",
+      "position_id": "643",
+      "category_id": "2346",
+      "sub_category_id": "2437",
+      "part_type_id": "4532",
+      "page": "1",
+      "limit": "50",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]"
+    }
+  },
+  {
+    "name": "products/engine_listings/heavy_duty",
+    "path": "/driv1/products/engine_listings/heavy_duty",
+    "query": {
+      "brand_codes": "BDCN,BCKM",
+      "locale": "en_US",
+      "filter_qualifier_ids": "23,53,63",
+      "sub_brand_codes": "BDCN,BCKM",
+      "position_id": "643",
+      "category_id": "2346",
+      "sub_category_id": "2437",
+      "part_type_id": "4532",
+      "page": "1",
+      "limit": "50",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "qualifier_response_ids": "53,64"
+    }
+  },
+  {
+    "name": "products/engine_listings/performance",
+    "path": "/driv1/products/engine_listings/performance",
+    "query": {
+      "brand_codes": "BDCN,BCKM",
+      "locale": "en_US",
+      "filter_qualifier_ids": "23,53,63",
+      "sub_brand_codes": "BDCN,BCKM",
+      "position_id": "643",
+      "category_id": "2346",
+      "sub_category_id": "2437",
+      "part_type_id": "4532",
+      "page": "1",
+      "limit": "50",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]"
+    }
+  },
+  {
+    "name": "products/specification_listings",
+    "path": "/driv1/products/specification_listings",
+    "query": {
+      "brand_codes": "BDCN,BCKM",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "locale": "en_US",
+      "sub_brand_codes": "BDCN,BCKM",
+      "position_id": "643",
+      "category_id": "2346",
+      "sub_category_id": "2437",
+      "part_type_id": "4532",
+      "page": "1",
+      "limit": "50"
+    }
+  },
+  {
+    "name": "products/specification_listings Copy",
+    "path": "/driv1/products/specification_listings",
+    "query": {
+      "brand_codes": "BDCN,BCKM",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "locale": "en_US",
+      "sub_brand_codes": "BDCN,BCKM",
+      "position_id": "643",
+      "category_id": "2346",
+      "sub_category_id": "2437",
+      "part_type_id": "4532",
+      "page": "1",
+      "limit": "50"
+    }
+  },
+  {
+    "name": "vehicles/vehicle_groups",
+    "path": "/driv1/vehicles/vehicle_groups",
+    "query": {
+      "brand_codes": "BDCN,BCKM",
+      "custom_fields": "[{\"type\":\"SalesRegion (MEX)\", \"value\":\"1\"},{\"type\":\"SalesRegion (USA)\", \"value\":\"1\"}]",
+      "keyword": "saw",
+      "locale": "en_US"
+    }
+  },
+  {
+    "name": "specification/part_types",
+    "path": "/v1/specifications/part_types",
+    "query": {
+      "brand_codes": "BDCN,BCKM",
+      "vehicle_group_ids": "2,7,8"
+    }
+  },
+  {
+    "name": "specification/attribute_values",
+    "path": "/v1/specifications/attribute_values",
+    "query": {
+      "brand_codes": "BDCN,BCKM",
+      "attribute_name": "Color"
+    }
+  },
+  {
+    "name": "categories",
+    "path": "/v1/vehicles/categories",
+    "query": {
+      "brand_codes": "BCSJ",
+      "vehicle_group_ids": "2,7,8"
+    }
+  },
+  {
+    "name": "test",
+    "path": "/v1/products/listings/full",
+    "query": {
+      "page": "1",
+      "limit": "50",
+      "brands": "true",
+      "brand_codes": "BDDJ,BBGB,BBKH,FDKT,GSTD,HHZZ,DWRS,BCWV,BKID,BDZH,FDLF,BCCH,FLLJ,FLLK,BCZC,BRKC,BCZK,BCKM,BDBR,BHVW,BDCM,BCSJ,BDCN",
+      "segments": "part_attributes,descriptions,extended_informations",
+      "vehicle_group_id": "2",
+      "year_id": "2017",
+      "make_id": "40",
+      "model_id": "287",
+      "dynamic_sub_config_types": "drive,engine_base,sub_model,body_type,body_door,engine_designation,engine_vin,transmission_base_type,transmission_base_control_type,transmission_base_gear,transmission_mfr_code,wheel_base,brake_abs,steering_system"
+    }
+  },
+  {
+    "name": "test Copy",
+    "path": "/v1/products/listings/full",
+    "query": {
+      "page": "1",
+      "limit": "50",
+      "brands": "true",
+      "brand_codes": "BDDJ,BBGB,BBKH,FDKT,GSTD,HHZZ,DWRS,BCWV,BKID,BDZH,FDLF,BCCH,FLLJ,FLLK,BCZC,BRKC,BCZK,BCKM,BDBR,BHVW,BDCM,BCSJ,BDCN",
+      "segments": "part_attributes,descriptions,extended_informations",
+      "vehicle_group_id": "2",
+      "year_id": "2017",
+      "make_id": "40",
+      "model_id": "287",
+      "dynamic_sub_config_types": "drive,engine_base,sub_model,body_type,body_door,engine_designation,engine_vin,transmission_base_type,transmission_base_control_type,transmission_base_gear,transmission_mfr_code,wheel_base,brake_abs,steering_system"
+    }
+  },
+  {
+    "name": "test Copy 2",
+    "path": "/v1/products/listings/full",
+    "query": {
+      "page": "1",
+      "limit": "50",
+      "brands": "true",
+      "brand_codes": "BDDJ,BBGB,BBKH,FDKT,GSTD,HHZZ,DWRS,BCWV,BKID,BDZH,FDLF,BCCH,FLLJ,FLLK,BCZC,BRKC,BCZK,BCKM,BDBR,BHVW,BDCM,BCSJ,BDCN",
+      "segments": "part_attributes,descriptions,extended_informations",
+      "vehicle_group_id": "2",
+      "year_id": "2017",
+      "make_id": "40",
+      "model_id": "287",
+      "dynamic_sub_config_types": "drive,engine_base,sub_model,body_type,body_door,engine_designation,engine_vin,transmission_base_type,transmission_base_control_type,transmission_base_gear,transmission_mfr_code,wheel_base,brake_abs,steering_system"
+    }
+  },
+  {
+    "name": "test 1",
+    "path": "/v1/products/applications",
+    "query": {
+      "brand_code": "BBKH",
+      "locale": "en_US",
+      "part_number": "120"
+    }
+  },
+  {
+    "name": "test 2.1",
+    "path": "/v1/vehicles/engine_mfrs",
+    "query": {
+      "brand_codes": "BCWV,BDBR,BHVW",
+      "vehicle_group_ids": "2,7,8"
+    }
+  },
+  {
+    "name": "test 2.2",
+    "path": "/v1/vehicles/engine_bases",
+    "query": {
+      "brand_codes": "BCWV,BDBR,BHVW",
+      "engine_mfr_id": "621",
+      "vehicle_group_ids": "2,7,8"
+    }
+  },
+  {
+    "name": "test 2.3",
+    "path": "/v1/vehicles/engine_bases",
+    "query": {
+      "brand_codes": "BCWV,BDBR,BHVW",
+      "vehicle_group_ids": "2,7,8",
+      "engine_mfr_id": "13"
+    }
+  },
+  {
+    "name": "test 3.1",
+    "path": "/v1/vehicles/engine_mfrs",
+    "query": {
+      "brand_codes": "BCWV,BDBR,BHVW",
+      "vehicle_group_ids": "2,7,8"
+    }
+  },
+  {
+    "name": "test 3.2",
+    "path": "/v1/vehicles/engine_bases",
+    "query": {
+      "brand_codes": "BCWV,BDBR,BHVW",
+      "engine_mfr_id": "11",
+      "vehicle_group_ids": "2,7,8"
+    }
+  },
+  {
+    "name": "test 3.3",
+    "path": "/v1/vehicles/engine_usages",
+    "query": {
+      "brand_codes": "BCWV,BDBR,BHVW",
+      "engine_mfr_id": "11",
+      "vehicle_group_ids": "2,7,8",
+      "engine_base_block_type_id": "10",
+      "engine_base_cubic_centimeter_id": "6100",
+      "engine_base_cubic_inch_id": "528",
+      "engine_base_cylinder_id": "17",
+      "engine_base_liter_id": "143"
+    }
+  },
+  {
+    "name": "test 3.4",
+    "path": "/v1/vehicles/engine_versions/light_duty",
+    "query": {
+      "brand_codes": "BCWV,BDBR,BHVW",
+      "engine_mfr_id": "11",
+      "vehicle_group_ids": "2,7,8",
+      "engine_base_block_type_id": "10",
+      "engine_base_cubic_centimeter_id": "6100",
+      "engine_base_cubic_inch_id": "528",
+      "engine_base_cylinder_id": "17",
+      "engine_base_liter_id": "143",
+      "vehicle_type_id": "5"
+    }
+  },
+  {
+    "name": "test 3.4 Copy",
+    "path": "/v1/vehicles/engine_versions/light_duty",
+    "query": {
+      "brand_codes": "BCWV,BDBR,BHVW",
+      "engine_mfr_id": "11",
+      "vehicle_group_ids": "2,7,8",
+      "engine_base_block_type_id": "10",
+      "engine_base_cubic_centimeter_id": "6100",
+      "engine_base_cubic_inch_id": "528",
+      "engine_base_cylinder_id": "17",
+      "engine_base_liter_id": "143",
+      "vehicle_type_id": "5"
+    }
+  },
+  {
+    "name": "test_motorstate",
+    "path": "/v2/products/listings",
+    "query": {
+      "year_id": "2013",
+      "make_id": "47",
+      "model_id": "21603",
+      "page": "1",
+      "limit": "10"
+    }
+  },
+  {
+    "name": "test_motorstate_2",
+    "path": "/v2/products/listings",
+    "query": {
+      "year_id": "2013",
+      "make_id": "47",
+      "model_id": "21603",
+      "page": "1",
+      "limit": "10"
+    }
+  },
+  {
+    "name": "vcdb/years",
+    "path": "/v1/vcdb/models",
+    "query": {
+      "year_id": "2022",
+      "make_id": "54"
+    }
+  },
+  {
+    "name": "vcdb/makes",
+    "path": "/v1/vcdb/makes",
+    "query": {
+      "year_id": "2022"
+    }
+  },
+  {
+    "name": "vcdb/models",
+    "path": "/v1/vcdb/models",
+    "query": {
+      "year_id": "2022",
+      "make_id": "54"
+    }
+  }
+]

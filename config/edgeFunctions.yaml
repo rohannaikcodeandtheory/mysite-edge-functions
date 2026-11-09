@@ -1,4 +1,3 @@
-# Verify against the schema supported by your Cloud Manager environment.
 kind: "EdgeFunctions"
 version: "1"
 data:
@@ -6,13 +5,19 @@ data:
     - name: my-edge-function
       origins:
         - name: pdm_api
-          domain: api.pdm-automotive.com
+          domain: driv-search-api-os-cache.pdm-automotive.com
   configs:
     - key: PDM_BASE_URL
-      value: "https://api.pdm-automotive.com/api/v1"
+      value: "https://driv-search-api-os-cache.pdm-automotive.com/v1"
     - key: PDM_REGION_ID
       value: "1,2"
+    - key: PDM_CUSTOM_FIELDS
+      value: ""
     - key: PDM_DYNAMIC_SUB_CONFIG_TYPES
+      value: "drive,engine_base,sub_model,body_type,body_door,engine_designation,engine_vin,transmission_base_type,transmission_base_control_type,transmission_base_gear,transmission_mfr_code,wheel_base,brake_abs,steering_system,transmission_mfr,engine_fuel_delivery_sub_type,engine_version,engine_fuel_type,engine_aspiration,engine_cylinder_head_type,engine_fuel_delivery_type,engine_valve,bed_length"
+    - key: PDM_BRAND_CODES_CORPORATE
+      value: ""
+    - key: PDM_LOCALE
       value: ""
   secrets:
     - key: PDM_API_TOKEN
