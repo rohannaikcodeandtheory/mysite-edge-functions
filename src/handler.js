@@ -1,4 +1,25 @@
 import { buildCatalogRequest, CATALOG_ROUTES } from './catalog.js';
+
+// Allow only the explicitly approved demo frontend origins.
+const ALLOWED_ORIGINS = new Set([
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
+  'http://localhost:8080',
+  'https://main--mysite--rohannaikcodeandtheory.aem.page',
+]);
+
+function corsHeaders(request) {
+  const origin = request.headers.get('Origin');
+  if (!origin || !ALLOWED_ORIGINS.has(origin)) return {};
+  return {
+    'Access-Control-Allow-Origin': origin,
+    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    'Access-Control-Allow-Headers': 'Accept, Content-Type',
+    'Access-Control-Max-Age': '600',
+    Vary: 'Origin',
+  };
+}
+
 const json = (data, status = 200, id = '', extra = {}) => Response.json(data, {
   status, headers: { 'Cache-Control': 'no-store', 'X-Request-ID': id, ...extra },
 });
@@ -10,7 +31,7 @@ const log = (level, event, fields = {}) => {
 };
 const failure = (code, message, status, id) => json({ error: { code, message, requestId: id } }, status, id);
 const requestId = () => (typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `req-${Date.now()}-${Math.random().toString(36).slice(2)}`);
-export async function handleCatalog(request, options = {}) {
+async function handleCatalogInternal(request, options = {}) {
   const id = requestId();
   const started = Date.now();
   const url = new URL(request.url);
@@ -74,4 +95,20 @@ export async function handleCatalog(request, options = {}) {
     log('error', 'pdm.request.failed', { requestId: id, route, code: timeout ? 'PDM_TIMEOUT' : 'PDM_NETWORK_ERROR', durationMs: Date.now() - started, errorName: error?.name || 'Error' });
     return failure(timeout ? 'PDM_TIMEOUT' : 'PDM_NETWORK_ERROR', timeout ? 'Catalog upstream timed out' : 'Catalog upstream unavailable', timeout ? 504 : 502, id);
   } finally { if (timer) clearTimeout(timer); }
+}
+
+// Apply CORS to every application response, including validation and upstream errors.
+export async function handleCatalog(request, options = {}) {
+  const origin = request.headers.get('Origin');
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      status: origin && ALLOWED_ORIGINS.has(origin) ? 204 : 403,
+      headers: { ...corsHeaders(request), 'Cache-Control': 'no-store' },
+    });
+  }
+  const response = await handleCatalogInternal(request, options);
+  for (const [name, value] of Object.entries(corsHeaders(request))) {
+    response.headers.set(name, value);
+  }
+  return response;
 }
